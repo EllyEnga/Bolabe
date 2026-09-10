@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>My Website</title>
+  <meta name="description" content="A modern, fast and responsive website.">
+
+  <title>MySite — Build Something Amazing</title>
 
   <style>
     * {
@@ -12,29 +14,889 @@
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #f4f7fb;
+      --text: #111827;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --secondary: #7c3aed;
+      --border: #e5e7eb;
+      --muted: #64748b;
+    }
+
+    body.dark {
+      --bg: #0b1120;
+      --text: #f8fafc;
+      --card: #111827;
+      --border: #1f2937;
+      --muted: #94a3b8;
     }
 
     body {
-      background: #f4f7fb;
-      color: #222;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
     }
 
+    /* HEADER */
+
     header {
-      background: #111827;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(17, 24, 39, 0.95);
+      backdrop-filter: blur(10px);
+
       color: white;
-      padding: 18px 8%;
+      padding: 16px 8%;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
-      font-size: 24px;
+      font-size: 25px;
       font-weight: bold;
+    }
+
+    .logo span {
+      color: #38bdf8;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
     }
 
     nav a {
       color: white;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #38bdf8;
+    }
+
+    .theme-btn,
+    .menu-btn {
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 88vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+      padding: 40px 20px;
+
+      background:
+        radial-gradient(circle at top left, #38bdf8 0%, transparent 30%),
+        linear-gradient(135deg, #2563eb, #7c3aed);
+
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 850px;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #bae6fd;
+    }
+
+    .hero p {
+      font-size: 19px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #2563eb;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .btn-outline {
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background: white;
+      color: #2563eb;
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 80px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* FEATURES */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      max-width: 1100px;
+      margin: 45px auto 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+
+      padding: 30px;
+      border-radius: 20px;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    }
+
+    .icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* STATS */
+
+    .stats {
+      background: #111827;
+      color: white;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      gap: 20px;
+    }
+
+    .stat h3 {
+      font-size: 40px;
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+
+    .stat p {
+      color: #cbd5e1;
+    }
+
+    /* AD SPACE */
+
+    .ad-section {
+      text-align: center;
+    }
+
+    .ad-box {
+      max-width: 900px;
+      min-height: 120px;
+
+      margin: 35px auto 0;
+
+      border: 2px dashed var(--border);
+      border-radius: 15px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: #111827;
+      color: white;
+      text-align: center;
+    }
+
+    .contact p {
+      color: #cbd5e1;
+      margin-bottom: 25px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      display: grid;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+
+      padding: 15px;
+
+      border: none;
+      border-radius: 10px;
+
+      outline: none;
+
+      font-size: 16px;
+    }
+
+    .contact-form textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .contact-form button {
+      padding: 15px;
+
+      border: none;
+      border-radius: 30px;
+
+      background: #2563eb;
+      color: white;
+
+      font-weight: bold;
+      font-size: 16px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 25px;
+
+      background: #030712;
+      color: #94a3b8;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+
+      bottom: 25px;
+      right: 25px;
+
+      background: #111827;
+      color: white;
+
+      padding: 15px 20px;
+
+      border-radius: 10px;
+
+      transform: translateY(100px);
+      opacity: 0;
+
+      transition: 0.4s;
+
+      z-index: 2000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* BACK TO TOP */
+
+    #topBtn {
+      position: fixed;
+
+      bottom: 25px;
+      left: 25px;
+
+      width: 45px;
+      height: 45px;
+
+      border: none;
+      border-radius: 50%;
+
+      background: #2563eb;
+      color: white;
+
+      cursor: pointer;
+
+      display: none;
+
+      z-index: 1000;
+    }
+
+    /* ANIMATION */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+
+        top: 70px;
+        left: 0;
+
+        width: 100%;
+
+        background: #111827;
+
+        display: none;
+        flex-direction: column;
+
+        padding: 25px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        margin: 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      header {
+        padding: 15px 5%;
+      }
+
+      section {
+        padding: 60px 5%;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .toast {
+        left: 20px;
+        right: 20px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">
+      My<span>Site</span>
+    </div>
+
+    <button class="menu-btn" onclick="toggleMenu()">
+      ☰
+    </button>
+
+    <nav id="nav">
+
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
+      <button class="theme-btn" onclick="toggleTheme()">
+        🌙
+      </button>
+
+    </nav>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h1>
+        Build Something <span>Amazing.</span>
+      </h1>
+
+      <p>
+        A modern, fast and responsive website built
+        with simple HTML, CSS and JavaScript.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#features" class="btn btn-primary">
+          Explore Website
+        </a>
+
+        <a href="#contact" class="btn btn-outline">
+          Contact Us
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FEATURES -->
+
+  <section id="features">
+
+    <div class="section-title">
+
+      <h2>What We Offer</h2>
+
+      <p>
+        Everything you need to create a clean,
+        modern and useful online experience.
+      </p>
+
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <div class="icon">🚀</div>
+
+        <h3>Fast</h3>
+
+        <p>
+          Lightweight code means your website can
+          load quickly even on slower connections.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">💡</div>
+
+        <h3>Creative</h3>
+
+        <p>
+          Modern layouts and interactive elements
+          help your website stand out.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">📱</div>
+
+        <h3>Responsive</h3>
+
+        <p>
+          Designed to work smoothly on phones,
+          tablets and desktop computers.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🔒</div>
+
+        <h3>Private</h3>
+
+        <p>
+          Your basic website can work without
+          depending on external frameworks.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">⚡</div>
+
+        <h3>Simple</h3>
+
+        <p>
+          Easy-to-understand HTML, CSS and
+          JavaScript makes the project easy to edit.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="icon">🌎</div>
+
+        <h3>Ready to Grow</h3>
+
+        <p>
+          Add accounts, databases, advertisements,
+          tools and other features later.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- STATS -->
+
+  <section class="stats">
+
+    <div class="stat">
+      <h3>100%</h3>
+      <p>Responsive</p>
+    </div>
+
+    <div class="stat">
+      <h3>24/7</h3>
+      <p>Available</p>
+    </div>
+
+    <div class="stat">
+      <h3>0</h3>
+      <p>Frameworks Required</p>
+    </div>
+
+    <div class="stat">
+      <h3>∞</h3>
+      <p>Possibilities</p>
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="section-title">
+
+      <h2>About MySite</h2>
+
+      <p>
+        MySite is a simple starting point for building
+        something bigger on the web. You can customize
+        this page and turn it into almost anything you want.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- AD SPACE -->
+
+  <section class="ad-section">
+
+    <div class="section-title">
+
+      <h2>Advertisement</h2>
+
+      <p>
+        This space can later be connected to
+        an advertising network.
+      </p>
+
+    </div>
+
+    <div class="ad-box">
+      ADVERTISEMENT SPACE
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="contact" id="contact">
+
+    <h2>Contact Us</h2>
+
+    <p>
+      Have a question? Send us a message.
+    </p>
+
+    <form class="contact-form" onsubmit="sendMessage(event)">
+
+      <input
+        type="text"
+        placeholder="Your name"
+        required
+      >
+
+      <input
+        type="email"
+        placeholder="Your email"
+        required
+      >
+
+      <textarea
+        placeholder="Your message"
+        required
+      ></textarea>
+
+      <button type="submit">
+        Send Message
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 MySite. All rights reserved.
+
+  </footer>
+
+
+  <!-- TOAST -->
+
+  <div class="toast" id="toast">
+    Message submitted successfully!
+  </div>
+
+
+  <!-- TOP BUTTON -->
+
+  <button id="topBtn" onclick="window.scrollTo(0,0)">
+    ↑
+  </button>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    function toggleMenu() {
+
+      document
+        .getElementById("nav")
+        .classList.toggle("active");
+
+    }
+
+
+    function toggleTheme() {
+
+      document
+        .body
+        .classList
+        .toggle("dark");
+
+      const button =
+        document.querySelector(".theme-btn");
+
+      if (document.body.classList.contains("dark")) {
+
+        button.textContent = "☀️";
+
+        localStorage.setItem("theme", "dark");
+
+      } else {
+
+        button.textContent = "🌙";
+
+        localStorage.setItem("theme", "light");
+
+      }
+
+    }
+
+
+    // Remember theme
+
+    if (localStorage.getItem("theme") === "dark") {
+
+      document.body.classList.add("dark");
+
+      document.querySelector(".theme-btn").textContent = "☀️";
+
+    }
+
+
+    function sendMessage(event) {
+
+      event.preventDefault();
+
+      const toast =
+        document.getElementById("toast");
+
+      toast.classList.add("show");
+
+      event.target.reset();
+
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 3000);
+
+    }
+
+
+    // Back-to-top button
+
+    window.addEventListener("scroll", () => {
+
+      const button =
+        document.getElementById("topBtn");
+
+      if (window.scrollY > 400) {
+
+        button.style.display = "block";
+
+      } else {
+
+        button.style.display = "none";
+
+      }
+
+    });
+
+
+    // Close mobile menu after clicking a link
+
+    document.querySelectorAll("nav a").forEach(link => {
+
+      link.addEventListener("click", () => {
+
+        document
+          .getElementById("nav")
+          .classList.remove("active");
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>      color: white;
       text-decoration: none;
       margin-left: 20px;
     }
